@@ -4,7 +4,7 @@ import { Invoice, AdminUser } from '@/types'
 import { invoiceTotal, formatMoney, isOverdue, nextInvoiceNumber, buildInvoiceHTML } from '@/lib/invoices'
 import { createClient } from '@/lib/supabase'
 
-interface Props { invoices: any[]; clients: any[]; user: AdminUser }
+interface Props { invoices: any[]; clients: any[]; user: any }
 
 type Status = 'all' | 'draft' | 'sent' | 'paid' | 'overdue'
 
