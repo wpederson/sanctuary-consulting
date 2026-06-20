@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerSupabaseClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminUser, can } from '@/lib/auth'
 import { buildInvoiceHTML, invoiceTotal, formatMoney, isOverdue } from '@/lib/invoices'
 import { sendEmail, invoiceEmailHTML } from '@/lib/email'
