@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
     {
       cookies: {
         getAll() { return request.cookies.getAll() },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: { name: string; value: string; options?: any }[]) {
           cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
           supabaseResponse = NextResponse.next({ request })
           cookiesToSet.forEach(({ name, value, options }) =>
@@ -21,44 +21,16 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  // Refresh session
   const { data: { user } } = await supabase.auth.getUser()
   const { pathname } = request.nextUrl
 
-  // Protect /admin routes — must be logged in
   if (pathname.startsWith('/admin') && !user) {
     return NextResponse.redirect(new URL('/login?redirect=' + pathname, request.url))
   }
 
-  // Protect /portal routes — must be logged in
   if (pathname.startsWith('/portal') && !user) {
     const clientId = pathname.split('/')[2]
     return NextResponse.redirect(new URL(`/portal/${clientId}/login`, request.url))
-  }
-
-  // If already logged in, skip login pages
-  if (user && (pathname === '/login' || pathname === '/')) {
-    // Check if admin or client
-    const { data: adminUser } = await supabase
-      .from('admin_users')
-      .select('id')
-      .eq('auth_user_id', user.id)
-      .eq('active', true)
-      .single()
-
-    if (adminUser) {
-      return NextResponse.redirect(new URL('/admin', request.url))
-    }
-    // Client — find their portal
-    const { data: client } = await supabase
-      .from('clients')
-      .select('id')
-      .eq('email', user.email)
-      .single()
-
-    if (client) {
-      return NextResponse.redirect(new URL(`/portal/${client.id}`, request.url))
-    }
   }
 
   return supabaseResponse
