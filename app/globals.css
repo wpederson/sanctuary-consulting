@@ -61,11 +61,11 @@
   .badge {
     @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold;
   }
-  .badge-green { @apply bg-emerald-100 text-green; }
-  .badge-gray  { @apply bg-gray-100 text-midGray; }
-  .badge-gold  { @apply bg-yellow-50 text-amber; }
-  .badge-red   { @apply bg-red-50 text-red; }
-  .badge-blue  { @apply bg-blue-50 text-blue-700; }
+  .badge-green { @apply bg-emerald-100; color: #1E7E4A; }
+  .badge-gray  { @apply bg-gray-100; color: #7A8C85; }
+  .badge-gold  { background: #fff3cd; color: #D4820A; }
+  .badge-red   { background: #fde8e4; color: #C0392B; }
+  .badge-blue  { background: #dbeafe; color: #1d4ed8; }
 
   /* Nav sidebar */
   .nav-item {
