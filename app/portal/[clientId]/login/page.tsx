@@ -2,8 +2,10 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import { use } from 'react'
 
-export default function PortalLoginPage({ params }: { params: { clientId: string } }) {
+export default function PortalLoginPage({ params }: { params: Promise<{ clientId: string }> }) {
+  const { clientId } = use(params)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -17,7 +19,7 @@ export default function PortalLoginPage({ params }: { params: { clientId: string
     setError('')
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) { setError('Invalid email or password'); setLoading(false); return }
-    router.push(`/portal/${params.clientId}`)
+    router.push(`/portal/${clientId}`)
   }
 
   return (
@@ -39,7 +41,7 @@ export default function PortalLoginPage({ params }: { params: { clientId: string
               <label className="label">Password</label>
               <input type="password" required value={password} onChange={e=>setPassword(e.target.value)} className="input" />
             </div>
-            {error && <div className="text-red text-sm bg-red-50 rounded-lg px-4 py-3">{error}</div>}
+            {error && <div className="text-red text-sm bg-red-50 rounded-lg px-4 py-3" style={{background:'#fde8e4'}}>{error}</div>}
             <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3">
               {loading ? 'Signing in…' : 'Access My Portal →'}
             </button>
