@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --forest:  #2C4A3E;
+    --sage:    #5C8374;
+    --gold:    #C8963E;
+    --cream:   #F5F2EC;
+    --tan:     #E2D9CC;
+    --red:     #C0392B;
+    --green:   #1E7E4A;
+  }
+  body { font-family: 'Georgia', serif; }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply bg-forest text-white px-4 py-2 rounded-lg font-semibold text-sm
+           hover:bg-forestMd transition-colors disabled:opacity-50 inline-flex items-center gap-2;
+  }
+  .btn-outline {
+    @apply border-2 border-forest text-forest px-4 py-2 rounded-lg font-semibold text-sm
+           hover:bg-forest hover:text-white transition-colors inline-flex items-center gap-2;
+  }
+  .btn-ghost {
+    @apply text-midGray px-4 py-2 rounded-lg font-semibold text-sm
+           hover:bg-warm transition-colors inline-flex items-center gap-2;
+  }
+  .btn-gold {
+    @apply bg-gold text-white px-4 py-2 rounded-lg font-semibold text-sm
+           hover:bg-amber transition-colors inline-flex items-center gap-2;
+  }
+  .btn-danger {
+    @apply bg-red text-white px-4 py-2 rounded-lg font-semibold text-sm
+           hover:opacity-90 transition-colors inline-flex items-center gap-2;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-tan p-6;
+  }
+
+  /* Form inputs */
+  .input {
+    @apply w-full px-3 py-2 border border-tan rounded-lg text-sm text-darkText
+           focus:outline-none focus:border-sage focus:ring-1 focus:ring-sage
+           placeholder:text-midGray bg-white;
+  }
+  .select {
+    @apply w-full px-3 py-2 border border-tan rounded-lg text-sm text-darkText
+           focus:outline-none focus:border-sage bg-white;
+  }
+  .label {
+    @apply block text-xs font-bold text-midGray uppercase tracking-wide mb-1;
+  }
+
+  /* Status badges */
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold;
+  }
+  .badge-green { @apply bg-emerald-100 text-green; }
+  .badge-gray  { @apply bg-gray-100 text-midGray; }
+  .badge-gold  { @apply bg-yellow-50 text-amber; }
+  .badge-red   { @apply bg-red-50 text-red; }
+  .badge-blue  { @apply bg-blue-50 text-blue-700; }
+
+  /* Nav sidebar */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold
+           text-sageLt cursor-pointer transition-colors hover:bg-forestMd hover:text-white;
+  }
+  .nav-item.active {
+    @apply bg-forestMd text-white;
+  }
+
+  /* Invoice status */
+  .inv-draft   { @apply bg-gray-100 text-midGray; }
+  .inv-sent    { @apply bg-blue-50 text-blue-700; }
+  .inv-paid    { @apply bg-emerald-50 text-green; }
+  .inv-overdue { @apply bg-red-50 text-red; }
+
+  /* Table */
+  .data-table { @apply w-full text-sm; }
+  .data-table th { @apply px-4 py-3 text-left text-xs font-bold text-midGray uppercase tracking-wide bg-cream border-b border-tan; }
+  .data-table td { @apply px-4 py-3 border-b border-tan; }
+  .data-table tr:hover td { @apply bg-cream; }
+
+  /* Sidebar layout */
+  .admin-layout {
+    @apply flex h-screen overflow-hidden bg-cream;
+  }
+  .admin-sidebar {
+    @apply w-56 bg-forest flex flex-col flex-shrink-0 overflow-y-auto;
+  }
+  .admin-main {
+    @apply flex-1 overflow-y-auto;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #93B5A7; border-radius: 3px; }
