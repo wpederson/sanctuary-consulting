@@ -1,5 +1,5 @@
 import { requireAdminUser, isConsultant, can } from '@/lib/auth'
-import { createServerSupabaseClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import ClientsTable from '@/components/admin/ClientsTable'
 
