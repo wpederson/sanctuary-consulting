@@ -1,1 +1,1 @@
-import { createServerSupabaseClient } from './supabase'
+import { createServerSupabaseClient } from './supabase-server'
