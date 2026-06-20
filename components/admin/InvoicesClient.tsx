@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Invoice, AdminUser } from '@/types'
+import { Invoice } from '@/types'
 import { invoiceTotal, formatMoney, isOverdue, nextInvoiceNumber, buildInvoiceHTML } from '@/lib/invoices'
 import { createClient } from '@/lib/supabase'
 
