@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { notFound, redirect } from 'next/navigation'
 import ClientPortal from '@/components/client/ClientPortal'
 
