@@ -1,10 +1,9 @@
 'use client'
-import { AdminUser } from '@/types'
 import Link from 'next/link'
 
 interface Props {
   clients: any[]
-  user: AdminUser
+  user: any
   consultants: any[]
 }
 
@@ -26,6 +25,7 @@ export default function ClientsTable({ clients, user, consultants }: Props) {
           {clients.map(c => {
             const con = c.consultants
             const resCount = c.client_resources?.length || 0
+            const conColor = con?.color === 'forest' ? '#2C4A3E' : con?.color === 'teal' ? '#2E7D6B' : '#5C8374'
             return (
               <tr key={c.id}>
                 <td>
@@ -41,7 +41,7 @@ export default function ClientsTable({ clients, user, consultants }: Props) {
                     <div className="flex items-center gap-2">
                       <div
                         className="w-6 h-6 rounded-md flex items-center justify-center text-white text-xs font-bold"
-                        style={{ background: con.color === 'forest' ? '#2C4A3E' : con.color === 'teal' ? '#2E7D6B' : '#5C8374' }}
+                        style={{ background: conColor }}
                       >
                         {con.avatar}
                       </div>
