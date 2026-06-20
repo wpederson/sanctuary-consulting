@@ -1,5 +1,4 @@
 import { requireRole } from '@/lib/auth'
-import { createServerSupabaseClient } from '@/lib/supabase'
 import InvoicesClient from '@/components/admin/InvoicesClient'
 
 export default async function InvoicesPage() {
