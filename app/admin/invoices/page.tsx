@@ -1,6 +1,6 @@
 import { requireRole } from '@/lib/auth'
 import InvoicesClient from '@/components/admin/InvoicesClient'
-
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 export default async function InvoicesPage() {
   const user = await requireRole(['super_admin', 'manager'])
   const supabase = await createServerSupabaseClient()
