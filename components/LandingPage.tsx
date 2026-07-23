@@ -294,7 +294,8 @@ export default function LandingPage({ content = {} }: Props) {
                   placeholder="Tell us about your congregation…" />
               </div>
               {contactSuccess ? (
-                <div className="bg-green/20 border border-green/40 rounded-lg px-4 py-3 text-white font-semibold text-sm text-center">
+                <div className="rounded-lg px-4 py-3 text-white font-semibold text-sm text-center"
+                  style={{background:'rgba(30,126,74,0.3)', border:'1px solid rgba(30,126,74,0.5)'}}>
                   ✅ Message sent! We will be in touch within one business day.
                 </div>
               ) : (
