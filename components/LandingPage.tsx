@@ -29,7 +29,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-cream flex flex-col">
 
       {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-forest/97 backdrop-blur-sm shadow-lg">
+     <nav className="sticky top-0 z-50 shadow-lg" style={{background:'#2C4A3E'}}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollTo('hero')}>
             <div className="relative w-10 h-10">
