@@ -39,6 +39,7 @@ export default function LandingPage({ content = {} }: Props) {
     { q:'The de-escalation training changed how our whole staff thinks about care. We have handled three situations this year calmly and quietly.', name:'Elder James Thornton', church:'Riverside Fellowship, Memphis TN' },
     { q:'I was the biggest skeptic on our board. Now I tell every pastor I know: do not wait. Culture First made this feel manageable.', name:'Deacon Marcus Webb', church:'New Hope Baptist, Knoxville TN' },
   ]
+  const about = content.about || {}
 
   async function handleContact(e: React.FormEvent) {
     e.preventDefault()
@@ -230,31 +231,26 @@ export default function LandingPage({ content = {} }: Props) {
           <div className="flex justify-center">
             <div className="relative">
               <img
-                src="https://gxlgweomjiabkoudnrgs.supabase.co/storage/v1/object/public/consultant-photos/1784836375440_Wes_optimized.jpg"
-                alt="Wes Pederson — Culture First Consulting"
+                src={about.photo_url || 'https://gxlgweomjiabkoudnrgs.supabase.co/storage/v1/object/public/consultant-photos/1784836375440_Wes_optimized.jpg'}
+                alt={about.name || 'Culture First Consulting'}
                 className="w-72 h-72 rounded-2xl object-cover shadow-2xl"
               />
               <div className="absolute -bottom-4 -right-4 bg-forest text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg">
-                Founder & Lead Consultant
+                {about.badge || 'Founder & Lead Consultant'}
               </div>
             </div>
           </div>
           <div>
-            <h3 className="text-2xl font-bold font-serif text-darkText mb-2">Wes Pederson</h3>
-            <div className="text-gold text-sm font-semibold mb-6">Pastor · Safety & Security Consultant</div>
-            <p className="text-midGray leading-relaxed text-sm">
-              For over a decade, I have walked alongside faith communities navigating one of ministry's most sensitive conversations — how to care for people without losing the culture that makes your congregation home. What makes my approach different is that I am not just a security consultant — I am also a pastor. I have stood at the front of a congregation, led teams through hard conversations, and navigated the tension between safety and welcome firsthand. That experience shapes everything I do. With more than ten years of specialized focus in Places of Worship safety and security, I have helped congregations of all sizes build safety programs that actually fit — not off-the-shelf frameworks, but thoughtful strategies designed around your people, your values, and your culture. I understand ministry from the inside, and I bring that perspective to every engagement, turning what can feel complicated and overwhelming into something clear, practical, and entirely aligned with who you are.
-            </p>
+            <h3 className="text-2xl font-bold font-serif text-darkText mb-2">{about.name || 'Wes Pederson'}</h3>
+            <div className="text-gold text-sm font-semibold mb-6">{about.title || 'Pastor · Safety & Security Consultant'}</div>
+            <p className="text-midGray leading-relaxed text-sm">{about.bio || ''}</p>
             <div className="mt-6 flex gap-4 flex-wrap">
-              <div className="flex items-center gap-2 text-sm text-midGray">
-                <span className="text-forest font-bold text-lg">🎓</span> 10+ Years Experience
-              </div>
-              <div className="flex items-center gap-2 text-sm text-midGray">
-                <span className="text-forest font-bold text-lg">⛪</span> Active Pastor
-              </div>
-              <div className="flex items-center gap-2 text-sm text-midGray">
-                <span className="text-forest font-bold text-lg">🛡</span> 50+ Congregations Served
-              </div>
+              {[1,2,3].map(n => about[`credential${n}_label`] ? (
+                <div key={n} className="flex items-center gap-2 text-sm text-midGray">
+                  <span className="text-forest font-bold text-lg">{about[`credential${n}_icon`]}</span>
+                  {about[`credential${n}_label`]}
+                </div>
+              ) : null)}
             </div>
           </div>
         </div>
