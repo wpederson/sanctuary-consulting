@@ -19,7 +19,6 @@ export default function LoginPage() {
     if (error) { setError(error.message); setLoading(false); return }
     if (!data.user) { setError('Login failed'); setLoading(false); return }
 
-    // Determine redirect
     const { data: adminUser } = await supabase
       .from('admin_users').select('id').eq('auth_user_id', data.user.id).eq('active', true).single()
     if (adminUser) { router.push('/admin'); return }
@@ -28,7 +27,7 @@ export default function LoginPage() {
       .from('clients').select('id').eq('email', data.user.email).single()
     if (client) { router.push(`/portal/${client.id}`); return }
 
-    setError('No account found. Contact your Sanctuary consultant.')
+    setError('No account found. Contact your Culture First consultant.')
     setLoading(false)
   }
 
@@ -39,10 +38,10 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <div className="inline-flex flex-col items-center gap-3">
             <div className="w-20 h-20 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center text-5xl shadow-lg">
-              🕊
+              🤝
             </div>
             <div>
-              <div className="text-3xl font-bold text-white tracking-tight font-serif">SANCTUARY</div>
+              <div className="text-3xl font-bold text-white tracking-tight font-serif">CULTURE FIRST</div>
               <div className="text-xs tracking-[3px] text-goldLt uppercase mt-1">Consulting</div>
             </div>
           </div>
@@ -51,7 +50,6 @@ export default function LoginPage() {
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           <h1 className="text-xl font-bold text-darkText mb-1">Sign in to your portal</h1>
           <p className="text-sm text-midGray mb-6">Admin staff and clients use the same login</p>
-
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="label">Email address</label>
@@ -77,21 +75,18 @@ export default function LoginPage() {
                 autoComplete="current-password"
               />
             </div>
-
             {error && (
-              <div className="bg-red-50 text-red border border-red-200 rounded-lg px-4 py-3 text-sm">
+              <div className="text-red border rounded-lg px-4 py-3 text-sm" style={{background:'#fde8e4', borderColor:'#f5c6c0'}}>
                 {error}
               </div>
             )}
-
             <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3 text-base">
               {loading ? 'Signing in…' : 'Sign in →'}
             </button>
           </form>
-
           <div className="mt-6 pt-5 border-t border-tan text-center">
             <p className="text-xs text-midGray">
-              Need access? Contact Sanctuary at{' '}
+              Need access? Contact Culture First Consulting at{' '}
               <a href="tel:6126004034" className="text-forest font-bold">612-600-4034</a>
             </p>
           </div>
