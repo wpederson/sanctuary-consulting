@@ -45,8 +45,8 @@ export default function ContentClient({ content: initial }: Props) {
     { id: 'approach', label: '📋 Approach' },
     { id: 'faqs', label: '❓ FAQs' },
     { id: 'testimonials', label: '💬 Testimonials' },
+    { id: 'about', label: '👤 About' },
   ]
-
   return (
     <div>
       {/* Tabs */}
@@ -177,6 +177,46 @@ export default function ContentClient({ content: initial }: Props) {
           </button>
         </div>
       )}
-    </div>
+   {/* About */}
+      {activeTab === 'about' && (
+        <div className="card space-y-4 max-w-2xl">
+          <h2 className="font-bold text-darkText">About Section</h2>
+          <div>
+            <label className="label">Your Name</label>
+            <input className="input" value={content.about?.name || ''} onChange={e => setContent(c => ({...c, about: {...(c.about||{}), name: e.target.value}}))} />
+          </div>
+          <div>
+            <label className="label">Title / Role</label>
+            <input className="input" value={content.about?.title || ''} onChange={e => setContent(c => ({...c, about: {...(c.about||{}), title: e.target.value}}))} />
+          </div>
+          <div>
+            <label className="label">Badge Label (shown on photo)</label>
+            <input className="input" value={content.about?.badge || ''} onChange={e => setContent(c => ({...c, about: {...(c.about||{}), badge: e.target.value}}))} />
+          </div>
+          <div>
+            <label className="label">Bio</label>
+            <textarea className="input" rows={6} value={content.about?.bio || ''} onChange={e => setContent(c => ({...c, about: {...(c.about||{}), bio: e.target.value}}))} />
+          </div>
+          <div>
+            <label className="label">Photo URL</label>
+            <input className="input" value={content.about?.photo_url || ''} onChange={e => setContent(c => ({...c, about: {...(c.about||{}), photo_url: e.target.value}}))} />
+            {content.about?.photo_url && (
+              <img src={content.about.photo_url} alt="Preview" className="w-24 h-24 rounded-xl object-cover mt-2" />
+            )}
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {[1,2,3].map(n => (
+              <div key={n} className="space-y-2">
+                <label className="label">Credential {n}</label>
+                <input className="input" placeholder="Icon (emoji)" value={content.about?.[`credential${n}_icon`] || ''} onChange={e => setContent(c => ({...c, about: {...(c.about||{}), [`credential${n}_icon`]: e.target.value}}))} />
+                <input className="input" placeholder="Label" value={content.about?.[`credential${n}_label`] || ''} onChange={e => setContent(c => ({...c, about: {...(c.about||{}), [`credential${n}_label`]: e.target.value}}))} />
+              </div>
+            ))}
+          </div>
+          <button onClick={() => save('about', content.about)} disabled={saving} className="btn-primary">
+            {saving ? 'Saving…' : saved === 'about' ? '✅ Saved!' : 'Save About Content'}
+          </button>
+        </div>
+      )} </div>
   )
 }
