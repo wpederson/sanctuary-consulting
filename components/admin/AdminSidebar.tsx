@@ -61,14 +61,14 @@ export default function AdminSidebar({ user }: Props) {
   ]
 
   const adminNav = [
-    { href: '/admin',              icon: '📊', label: 'Overview' },
-    { href: '/admin/clients',      icon: '🏛', label: 'Clients' },
-    { href: '/admin/consultants',  icon: '👤', label: 'Consultants' },
-    { href: '/admin/resources',    icon: '📁', label: 'Resources' },
+    { href: '/admin',             icon: '📊', label: 'Overview' },
+    { href: '/admin/clients',     icon: '🏛', label: 'Clients' },
+    { href: '/admin/consultants', icon: '👤', label: 'Consultants' },
+    { href: '/admin/resources',   icon: '📁', label: 'Resources' },
     ...( can(user, 'viewActivityLog') ? [{ href: '/admin/activity', icon: '📋', label: 'Activity Log' }] : []),
     ...( can(user, 'manageInvoices')  ? [{ href: '/admin/invoices', icon: '🧾', label: 'Invoices' }] : []),
     ...( can(user, 'manageUsers')     ? [{ href: '/admin/users',    icon: '🔐', label: 'User Management' }] : []),
-    { href: '/admin/content', icon: '🖊', label: 'Website Content' },
+    { href: '/admin/content',     icon: '🖊', label: 'Website Content' },
   ]
 
   const nav = isConsultant(user) ? consultantNav : adminNav
@@ -82,7 +82,7 @@ export default function AdminSidebar({ user }: Props) {
     <div className="admin-sidebar">
       <div className="px-4 py-5 border-b border-forestMd">
         <Link href="/admin" className="flex items-center gap-2">
-          <span className="text-xl">🕊</span>
+          <span className="text-xl">🤝</span>
           <div>
             <div className="text-white font-bold text-sm tracking-tight font-serif">CULTURE FIRST</div>
             <div className="text-goldLt text-xs tracking-widest uppercase" style={{fontSize:'9px'}}>Consulting</div>
@@ -109,7 +109,7 @@ export default function AdminSidebar({ user }: Props) {
         <div className="text-sageLt text-xs font-bold uppercase tracking-wider px-2 mb-2">Navigation</div>
         {nav.map(item => (
           <Link
-            key={item.href}
+            key={item.label}
             href={item.href}
             className={`nav-item ${pathname === item.href ? 'active' : ''}`}
           >
