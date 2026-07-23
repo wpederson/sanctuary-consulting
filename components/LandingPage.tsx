@@ -2,7 +2,14 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
-export default function LandingPage() {
+interface Props { content?: Record<string, any> }
+
+export default function LandingPage({ content = {} }: Props) {
+  const hero = content.hero || {}
+  const services = content.services || []
+  const approach = content.approach || []
+  const faqs = content.faqs || []
+  const testimonials = content.testimonials || []
   const [contactSuccess, setContactSuccess] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
