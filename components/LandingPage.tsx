@@ -107,12 +107,12 @@ export default function LandingPage({ content = {} }: Props) {
               </div>
             </div>
           </div>
-          <div className="text-goldLt text-xs font-bold tracking-widest uppercase mb-4">Places of Worship Safety & Security Consulting</div>
+<div className="text-goldLt text-xs font-bold tracking-widest uppercase mb-4">{hero.eyebrow || 'Places of Worship Safety & Security Consulting'}</div>
           <h1 className="text-5xl font-bold font-serif mb-6 leading-tight">
-            Protect Your People.<br/><span className="text-goldLt">Preserve Your Culture.</span>
+            {hero.headline || 'Protect Your People.'}<br/><span className="text-goldLt">{hero.headline2 || 'Preserve Your Culture.'}</span>
           </h1>
           <p className="text-xl text-sageLt mb-10 max-w-2xl mx-auto leading-relaxed">
-            Culture First helps churches, mosques, synagogues, and faith communities build thoughtful security strategies — without changing what makes your community special.
+            {hero.subtext || 'Culture First helps faith communities build thoughtful security strategies.'}
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <button onClick={() => scrollTo('contact')}
@@ -124,15 +124,14 @@ export default function LandingPage({ content = {} }: Props) {
               Explore Our Services
             </button>
           </div>
-          <div className="flex justify-center gap-12 mt-16 flex-wrap">
-            {[['50+','Congregations Served'],['15+','Years Experience'],['100%','Culture-First'],['0','One-Size-Fits-All Plans']].map(([val,label]) => (
-              <div key={label} className="text-center">
-                <div className="text-3xl font-bold text-white">{val}</div>
-                <div className="text-sageLt text-xs mt-1">{label}</div>
+<div className="flex justify-center gap-12 mt-16 flex-wrap">
+            {[1,2,3,4].map(n => (
+              <div key={n} className="text-center">
+                <div className="text-3xl font-bold text-white">{hero[`stat${n}_val`] || ''}</div>
+                <div className="text-sageLt text-xs mt-1">{hero[`stat${n}_label`] || ''}</div>
               </div>
             ))}
-          </div>
-        </div>
+          </div>        </div>
       </section>
       {/* Services */}
       <section id="services" className="py-20 px-6 max-w-6xl mx-auto">
@@ -143,8 +142,7 @@ export default function LandingPage({ content = {} }: Props) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { icon:'🛡', title:'Security Strategy', color:'#2C4A3E', body:'A comprehensive framework tailored to your congregation size, culture, and risk profile. Includes policy templates and implementation roadmap.' },
-            { icon:'🎓', title:'De-Escalation Training', color:'#5C8374', body:'Hands-on training using the CALM framework. Covers crisis recognition, verbal de-escalation, and mental health awareness.' },
+{services.map((s: any) => (            { icon:'🎓', title:'De-Escalation Training', color:'#5C8374', body:'Hands-on training using the CALM framework. Covers crisis recognition, verbal de-escalation, and mental health awareness.' },
             { icon:'👥', title:'Volunteer Development', color:'#2E7D6B', body:'Identify, vet, and train the right people — leaders who reflect your congregation\'s warmth while providing thoughtful safety coverage.' },
             { icon:'📋', title:'Policy Writing', color:'#C8963E', body:'Clear, practical written policies covering use of force, communication protocols, trespassing procedures, and documentation.' },
             { icon:'🧠', title:'Mental Health Readiness', color:'#D4820A', body:'Training and protocols for behavioral health situations — the most common type of security incident at places of worship.' },
@@ -168,9 +166,7 @@ export default function LandingPage({ content = {} }: Props) {
             <p className="text-midGray leading-relaxed">We don't believe security and hospitality are in conflict. The best safety teams are your most welcoming people — trained to notice and respond, without anyone feeling watched.</p>
           </div>
           <div className="space-y-6">
-            {[
-              { n:'1', title:'Listen First', body:'We start by understanding your congregation\'s identity, culture, values, and specific concerns. Your words shape everything.' },
-              { n:'2', title:'Assess Honestly', body:'A frank assessment of your current safety posture — what\'s working, what\'s missing, and what matters most.' },
+{approach.map((step: any) => (              { n:'2', title:'Assess Honestly', body:'A frank assessment of your current safety posture — what\'s working, what\'s missing, and what matters most.' },
               { n:'3', title:'Build Together', body:'We co-create a plan with your leadership — one everyone feels ownership over and fits how you already operate.' },
               { n:'4', title:'Train & Sustain', body:'Hands-on training, written resources, and ongoing support through your client portal.' },
             ].map(step => (
@@ -194,8 +190,7 @@ export default function LandingPage({ content = {} }: Props) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { q:'"Security doesn\'t belong in a church."', a:'We agree a militarized presence has no place in a house of worship. What we build looks like hospitality with awareness — warm, discreet, and deeply pastoral.' },
-            { q:'"We don\'t want people to feel uncomfortable."', a:'Done well, security increases warmth. People feel safer when they sense someone is paying caring attention.' },
+{faqs.map((faq: any) => (            { q:'"We don\'t want people to feel uncomfortable."', a:'Done well, security increases warmth. People feel safer when they sense someone is paying caring attention.' },
             { q:'"We can\'t afford paid security."', a:'You don\'t need it. A small, well-trained volunteer team built from your own congregation is often more effective.' },
             { q:'"This will change who we are."', a:'That\'s our primary commitment: it won\'t. Every decision is filtered through your identity and values.' },
             { q:'"We\'re not comfortable with firearms."', a:'A completely valid position. An unarmed, trained team handles the vast majority of incidents effectively.' },
@@ -217,9 +212,7 @@ export default function LandingPage({ content = {} }: Props) {
             <h2 className="text-4xl font-bold font-serif text-darkText">Trusted by congregations across the region</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { q:'We were hesitant for years. Culture First helped us build something that feels completely like us. Nobody even knows we have a safety team.', name:'Pastor Sarah Mitchell', church:'Grace Community Church, Nashville TN' },
-              { q:'The de-escalation training changed how our whole staff thinks about care. We\'ve handled three situations this year calmly and quietly.', name:'Elder James Thornton', church:'Riverside Fellowship, Memphis TN' },
+{testimonials.map((t: any) => (              { q:'The de-escalation training changed how our whole staff thinks about care. We\'ve handled three situations this year calmly and quietly.', name:'Elder James Thornton', church:'Riverside Fellowship, Memphis TN' },
               { q:'I was the biggest skeptic on our board. Now I tell every pastor I know: don\'t wait. Culture First made this feel manageable.', name:'Deacon Marcus Webb', church:'New Hope Baptist, Knoxville TN' },
             ].map(t => (
               <div key={t.name} className="bg-white rounded-2xl p-6 shadow-sm">
