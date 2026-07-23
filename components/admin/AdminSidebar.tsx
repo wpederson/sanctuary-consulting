@@ -125,9 +125,10 @@ export default function AdminSidebar({ user }: Props) {
             + New Client
           </Link>
         )}
-        <Link href="/" className="block text-center text-xs text-sageLt hover:text-white transition-colors py-1">
+        <a href="/preview-home" target="_blank" rel="noopener noreferrer"
+          className="block text-center text-xs text-sageLt hover:text-white transition-colors py-1">
           🌐 View Home Page
-        </Link>
+        </a>
         <button
           onClick={handleLogout}
           className="w-full text-center text-xs text-sageLt hover:text-white transition-colors py-1"
