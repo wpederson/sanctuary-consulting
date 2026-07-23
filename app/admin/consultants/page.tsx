@@ -3,11 +3,6 @@ import { useState, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 
-interface Props {
-  consultant: any | null
-  assignedClients?: any[]
-}
-
 const COLORS = ['forest', 'teal', 'sage', 'gold', 'amber']
 const COLOR_HEX: Record<string, string> = {
   forest: '#2C4A3E', teal: '#2E7D6B', sage: '#5C8374', gold: '#C8963E', amber: '#D4820A'
