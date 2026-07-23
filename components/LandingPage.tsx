@@ -118,7 +118,7 @@ export default function LandingPage({ content = {} }: Props) {
             <span className="text-goldLt">{hero.headline2 || 'Preserve Your Culture.'}</span>
           </h1>
           <p className="text-xl text-sageLt mb-10 max-w-2xl mx-auto leading-relaxed">
-            {hero.subtext || 'Culture First helps faith communities build thoughtful security strategies without changing what makes your community special.'}
+            {hero.subtext || 'Culture First helps faith communities build thoughtful security strategies.'}
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <button onClick={() => scrollTo('contact')}
@@ -131,10 +131,15 @@ export default function LandingPage({ content = {} }: Props) {
             </button>
           </div>
           <div className="flex justify-center gap-12 mt-16 flex-wrap">
-            {[1,2,3,4].map(n => (
-              <div key={n} className="text-center">
-                <div className="text-3xl font-bold text-white">{hero[`stat${n}_val`] || ''}</div>
-                <div className="text-sageLt text-xs mt-1">{hero[`stat${n}_label`] || ''}</div>
+            {[
+              { val: hero.stat1_val, label: hero.stat1_label },
+              { val: hero.stat2_val, label: hero.stat2_label },
+              { val: hero.stat3_val, label: hero.stat3_label },
+              { val: hero.stat4_val, label: hero.stat4_label },
+            ].filter(s => s.val).map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="text-3xl font-bold text-white">{s.val}</div>
+                <div className="text-sageLt text-xs mt-1">{s.label}</div>
               </div>
             ))}
           </div>
