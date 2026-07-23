@@ -68,6 +68,7 @@ export default function AdminSidebar({ user }: Props) {
     ...( can(user, 'viewActivityLog') ? [{ href: '/admin/activity', icon: '📋', label: 'Activity Log' }] : []),
     ...( can(user, 'manageInvoices')  ? [{ href: '/admin/invoices', icon: '🧾', label: 'Invoices' }] : []),
     ...( can(user, 'manageUsers')     ? [{ href: '/admin/users',    icon: '🔐', label: 'User Management' }] : []),
+    { href: '/admin/content', icon: '🖊', label: 'Website Content' },
   ]
 
   const nav = isConsultant(user) ? consultantNav : adminNav
