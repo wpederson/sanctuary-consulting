@@ -16,7 +16,24 @@ export default async function HomePage() {
     if (client) redirect(`/portal/${client.id}`)
   }
 
-  return <LandingPage />
+  // Load each content section separately
+  const [hero, services, approach, faqs, testimonials] = await Promise.all([
+    supabase.from('site_content').select('content').eq('id', 'hero').single(),
+    supabase.from('site_content').select('content').eq('id', 'services').single(),
+    supabase.from('site_content').select('content').eq('id', 'approach').single(),
+    supabase.from('site_content').select('content').eq('id', 'faqs').single(),
+    supabase.from('site_content').select('content').eq('id', 'testimonials').single(),
+  ])
+
+  const content = {
+    hero:         hero.data?.content || {},
+    services:     services.data?.content || [],
+    approach:     approach.data?.content || [],
+    faqs:         faqs.data?.content || [],
+    testimonials: testimonials.data?.content || [],
+  }
+
+  return <LandingPage content={content} />
 }
 
 export const dynamic = 'force-dynamic'
