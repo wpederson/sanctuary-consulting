@@ -83,7 +83,7 @@ export default function AdminSidebar({ user }: Props) {
         <Link href="/admin" className="flex items-center gap-2">
           <span className="text-xl">🕊</span>
           <div>
-            <div className="text-white font-bold text-sm tracking-tight font-serif">SANCTUARY</div>
+            <div className="text-white font-bold text-sm tracking-tight font-serif">CULTURE FIRST</div>
             <div className="text-goldLt text-xs tracking-widest uppercase" style={{fontSize:'9px'}}>Consulting</div>
           </div>
         </Link>
